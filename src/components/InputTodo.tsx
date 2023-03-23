@@ -9,6 +9,7 @@ import {
   FormHelperText,
 } from "@chakra-ui/react";
 import { Todo } from "../Types";
+import { PrimaryButton } from "./PrimaryButton";
 
 // type Props = {
 //   onChange:
@@ -36,7 +37,6 @@ export const InputTodo: FC = () => {
     setList([...list, newTodo]);
     setTitle("");
     setContent("");
-    console.log(newTodo); //後で消す
   };
 
   return (
@@ -47,8 +47,10 @@ export const InputTodo: FC = () => {
         <Input placeholder="内容" value={content} onChange={inputContent} />
       </FormControl>
       <Button onClick={onClickAdd}>追加ボタン</Button>
+      <PrimaryButton onClick={() => alert('a')}>test</PrimaryButton>
     </Box>
   );
 };
 
 //memoで囲うべきか
+//props いる？

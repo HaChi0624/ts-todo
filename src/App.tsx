@@ -1,5 +1,5 @@
 import { ChakraProvider } from "@chakra-ui/react";
-import { Input, Button } from "@chakra-ui/react"
+import { Button } from "@chakra-ui/react"
 import { Box } from "@chakra-ui/layout";
 import { InputTodo } from "./components/InputTodo";
 
