@@ -11,7 +11,7 @@ import {
 import { Todo } from "../Types";
 
 // type Props = {
-//   onChange: 
+//   onChange:
 // }
 
 export const InputTodo: FC = () => {
@@ -24,19 +24,19 @@ export const InputTodo: FC = () => {
     setTitle(e.target.value);
   };
   const inputContent = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
+    setContent(e.target.value);
   };
 
   //追加ボタンを押すと一覧に追加
   const onClickAdd = () => {
     if (title === "") {
-      return alert("件名を入力してください"); 
+      return alert("件名を入力してください");
     }
-    const newTodo: Todo = { id: 1, title, content, status: false }; 
-    setList([...list, newTodo]); 
+    const newTodo: Todo = { id: 1, title, content, status: false };
+    setList([...list, newTodo]);
     setTitle("");
     setContent("");
-    console.log(newTodo)//後で消す
+    console.log(newTodo); //後で消す
   };
 
   return (
@@ -45,10 +45,8 @@ export const InputTodo: FC = () => {
         <FormLabel>新規追加</FormLabel>
         <Input placeholder="件名" value={title} onChange={inputTitle} />
         <Input placeholder="内容" value={content} onChange={inputContent} />
-        <Button onClick={onClickAdd}>
-          追加ボタン
-        </Button>
       </FormControl>
+      <Button onClick={onClickAdd}>追加ボタン</Button>
     </Box>
   );
 };
