@@ -1,13 +1,7 @@
-import { FC, useState } from "react";
-import {
-  Box,
-  Input,
-  Button,
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-} from "@chakra-ui/react";
+//新規追加コンポーネント
+
+import { FC, useState, memo } from "react";
+import { Box, Input, FormControl, FormLabel } from "@chakra-ui/react";
 import { Todo } from "../Types";
 import { PrimaryButton } from "./PrimaryButton";
 
@@ -15,7 +9,7 @@ import { PrimaryButton } from "./PrimaryButton";
 //   onChange:
 // }
 
-export const InputTodo: FC = () => {
+const InputTodo: FC = memo(() => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [list, setList] = useState<Array<Todo>>([]);
@@ -37,6 +31,7 @@ export const InputTodo: FC = () => {
     setList([...list, newTodo]);
     setTitle("");
     setContent("");
+    console.log(newTodo);
   };
 
   return (
@@ -46,11 +41,13 @@ export const InputTodo: FC = () => {
         <Input placeholder="件名" value={title} onChange={inputTitle} />
         <Input placeholder="内容" value={content} onChange={inputContent} />
       </FormControl>
-      <Button onClick={onClickAdd}>追加ボタン</Button>
-      <PrimaryButton onClick={() => alert('a')}>test</PrimaryButton>
+      <PrimaryButton onClick={onClickAdd}>追加</PrimaryButton>
     </Box>
   );
-};
+});
+
+export default InputTodo;
 
 //memoで囲うべきか
-//props いる？
+//props いる?
+//idの設定
