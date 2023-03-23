@@ -1,17 +1,13 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import { Input, Button } from "@chakra-ui/react"
 import { Box } from "@chakra-ui/layout";
+import { InputTodo } from "./components/InputTodo";
 
 const App = () => {
   return (
     <ChakraProvider>
       <h1>題名</h1>
-      <Box>
-        <Input placeholder="件名" />
-        <Input placeholder="内容" />
-        <br />
-        <Button>追加ボタン</Button>
-      </Box>
+      <InputTodo />
       <Box>
         <h2>一覧</h2>
         <dl>
