@@ -1,18 +1,22 @@
-//新規追加コンポーネント
+//新規追加コンポーネント2
+//useContextでlist,setListを管理
 
-import { FC, useState, memo } from "react";
+//InputTodo1は削除済み
+
+import { FC, useState, memo, useContext } from "react";
 import { Box, Input, FormControl, FormLabel } from "@chakra-ui/react";
 import { Todo } from "../Types";
 import { PrimaryButton } from "./PrimaryButton";
+import { ListContext } from "./ListProvider";
 
 // type Props = {
 //   onChange:
 // }
 
-const InputTodo: FC = memo(() => {
+const InputTodo2: FC = memo(() => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [list, setList] = useState<Array<Todo>>([]);
+  const { list, setList } = useContext(ListContext);
 
   //inputのstatusを変化
   const inputTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,17 +31,18 @@ const InputTodo: FC = memo(() => {
     if (title === "") {
       return alert("件名を入力してください");
     }
-    const newTodo: Todo = { id: 1, title, content, status: false };
+    const newTodo: Todo = { id: Math.floor(Math.random() * 1e5), title, content, status: false };
     setList([...list, newTodo]);
     setTitle("");
     setContent("");
     console.log(newTodo);
+    console.log(list);
   };
 
   return (
     <Box p={6}>
       <FormControl>
-        <FormLabel>新規追加</FormLabel>
+        <FormLabel>新規追加2</FormLabel>
         <Input placeholder="件名" value={title} onChange={inputTitle} />
         <Input placeholder="内容" value={content} onChange={inputContent} />
       </FormControl>
@@ -46,7 +51,7 @@ const InputTodo: FC = memo(() => {
   );
 });
 
-export default InputTodo;
+export default InputTodo2;
 
 //memoで囲うべきか
 //props いる?
