@@ -16,7 +16,7 @@ import { ListContext } from "./ListProvider";
 const InputTodo2: FC = memo(() => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const { list, setList } = useContext(ListContext);
+  const { todoList, setTodoList } = useContext(ListContext);
 
   //inputのstatusを変化
   const inputTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,11 +32,11 @@ const InputTodo2: FC = memo(() => {
       return alert("件名を入力してください");
     }
     const newTodo: Todo = { id: Math.floor(Math.random() * 1e5), title, content, status: false };
-    setList([...list, newTodo]);
+    setTodoList([...todoList, newTodo]);
     setTitle("");
     setContent("");
-    console.log(newTodo);
-    console.log(list);
+    console.log(newTodo); //
+    console.log(todoList);
   };
 
   return (
