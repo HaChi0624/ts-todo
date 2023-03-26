@@ -35,14 +35,14 @@ const InputTodo2: FC = memo(() => {
     setTodoList([...todoList, newTodo]);
     setTitle("");
     setContent("");
-    console.log(newTodo); //
-    console.log(todoList);
+    console.log(newTodo); //後で消す
+    console.log(todoList); //後で消す
   };
 
   return (
     <Box p={6}>
       <FormControl>
-        <FormLabel>新規追加2</FormLabel>
+        <FormLabel>新規追加</FormLabel>
         <Input placeholder="件名" value={title} onChange={inputTitle} />
         <Input placeholder="内容" value={content} onChange={inputContent} />
       </FormControl>

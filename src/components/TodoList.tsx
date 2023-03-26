@@ -1,5 +1,5 @@
 import { FC, useContext } from "react";
-import { Button, Stack, Heading, Text, Wrap, WrapItem } from "@chakra-ui/react";
+import { Button, Stack, Heading, Text, VStack, Box } from "@chakra-ui/react";
 import { PrimaryButton } from "./PrimaryButton";
 import { ListContext } from "./ListProvider";
 
@@ -11,16 +11,16 @@ export const TodoList: FC = () => {
   return (
     <Stack p={4}>
       <h2>一覧</h2>
-      <Wrap as={`dl`}>
+      <VStack as={`dl`}>
         {todoList.map((i) => (
-          <WrapItem key={i.id}>
+          <Box key={i.id} shadow='md' backgroundColor='red' borderRadius='md'>
             <Heading as={`dt`}>{i.title}</Heading>
             <Text as={`dd`}>{i.content}</Text>
-            <Button>編集ボタン</Button>
+            <Button>編集</Button>
             <PrimaryButton onClick={onClickDelete}>削除</PrimaryButton>
-          </WrapItem>
+          </Box>
         ))}
-      </Wrap>
+      </VStack>
     </Stack>
   );
 };
@@ -28,3 +28,6 @@ export const TodoList: FC = () => {
 //編集ボタンを押すとモーダルウィンドウが出てくるようにしたい
 //削除したtodo一覧のページを作りたい
 //onClickDelete
+
+//accodion で内容を出せるように
+//memo()

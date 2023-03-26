@@ -1,5 +1,4 @@
-import { ChakraProvider, Stack } from "@chakra-ui/react";
-import { Button } from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react";
 
 import InputTodo2 from "./components/InputTodo2";
 import { TodoList } from "./components/TodoList";
@@ -10,23 +9,7 @@ const App = () => {
     <ChakraProvider>
       <ListProvider>
         <h1>題名</h1>
-        {/* <InputTodo /> */} 
         <InputTodo2 />
-        <Stack p={4}>
-          <h2>一覧</h2>
-          <dl>
-            <dt>件名1</dt>
-            <dd>内容1</dd>
-            <Button>編集ボタン</Button>
-            <Button>削除ボタン</Button>
-          </dl>
-          <dl>
-            <dt>件名2</dt>
-            <dd>内容2</dd>
-            <Button>編集ボタン</Button>
-            <Button>削除ボタン</Button>
-          </dl>
-        </Stack>
         <TodoList />
       </ListProvider>
     </ChakraProvider>
