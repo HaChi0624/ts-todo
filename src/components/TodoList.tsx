@@ -1,6 +1,6 @@
 import { FC, useContext } from "react";
 import { Button, Stack, Heading, Text, VStack, Box } from "@chakra-ui/react";
-import { PrimaryButton } from "./PrimaryButton";
+import { PrimaryButton } from "./atoms/PrimaryButton";
 import { ListContext } from "./ListProvider";
 
 export const TodoList: FC = () => {
@@ -13,7 +13,7 @@ export const TodoList: FC = () => {
       <h2>一覧</h2>
       <VStack as={`dl`}>
         {todoList.map((i) => (
-          <Box key={i.id} shadow='md' backgroundColor='red' borderRadius='md'>
+          <Box key={i.id} shadow="md" backgroundColor="red" borderRadius="md">
             <Heading as={`dt`}>{i.title}</Heading>
             <Text as={`dd`}>{i.content}</Text>
             <Button>編集</Button>

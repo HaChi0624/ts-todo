@@ -6,7 +6,7 @@
 import { FC, useState, memo, useContext } from "react";
 import { Box, Input, FormControl, FormLabel } from "@chakra-ui/react";
 import { Todo } from "../Types";
-import { PrimaryButton } from "./PrimaryButton";
+import { PrimaryButton } from "./atoms/PrimaryButton";
 import { ListContext } from "./ListProvider";
 
 // type Props = {
@@ -31,7 +31,12 @@ const InputTodo2: FC = memo(() => {
     if (title === "") {
       return alert("件名を入力してください");
     }
-    const newTodo: Todo = { id: Math.floor(Math.random() * 1e5), title, content, status: false };
+    const newTodo: Todo = {
+      id: Math.floor(Math.random() * 1e5),
+      title,
+      content,
+      status: false,
+    };
     setTodoList([...todoList, newTodo]);
     setTitle("");
     setContent("");
