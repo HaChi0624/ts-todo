@@ -41,8 +41,9 @@ const InputTodo2: FC = memo(() => {
     setTitle("");
     setContent("");
     console.log(newTodo); //後で消す
-    console.log(todoList); //後で消す
   };
+
+
 
   return (
     <Box p={6}>
@@ -61,3 +62,5 @@ export default InputTodo2;
 //memoで囲うべきか
 //props いる?
 //idの設定
+
+//onSubmit onClickどちらを使うべきか

@@ -1,7 +1,7 @@
 import { ChakraProvider } from "@chakra-ui/react";
 
 import InputTodo2 from "./components/InputTodo2";
-import { TodoList } from "./components/TodoList";
+import TodoList from "./components/TodoList";
 import { ListProvider } from "./components/ListProvider";
 
 const App = () => {
