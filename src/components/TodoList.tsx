@@ -1,25 +1,29 @@
 import { FC, memo, useContext, useState } from "react";
-import { Button, Stack, Heading, Text, VStack, Box } from "@chakra-ui/react";
-import { PrimaryButton } from "./atoms/PrimaryButton";
+import { Button, Stack, Heading, Text, VStack } from "@chakra-ui/react";
+// import { PrimaryButton } from "./atoms/PrimaryButton";
 import { ListContext } from "./ListProvider";
 import { useDelete } from "../hooks/useDelete";
 
-const TodoList: FC = memo(() => {
-  const { todoList } = useContext(ListContext);
-  const { deleteTodo } = useDelete();
-  const [todoId, setTodoId] = useState<number>();
 
+
+
+const TodoList: FC = memo(() => {
+  const { todoList } = useContext(ListContext); 
+  const [todoId, setTodoId] = useState<number>(0) //多分間違っている
+  const { deleteTodo } = useDelete();
+
+  
   //削除
-  const onClickDelete = () => deleteTodo(todoId);
+  const onClickDelete = () => deleteTodo(todoId)
 
   //編集
 
   return (
     <Stack p={4}>
       <h2>一覧</h2>
-      <VStack as={`dl`}>
         {todoList.map((item) => (
-          <Box
+          <VStack
+            as={`dl`}
             key={item.id}
             shadow="md"
             backgroundColor="teal.100"
@@ -28,10 +32,9 @@ const TodoList: FC = memo(() => {
             <Heading as={`dt`}>{item.title}</Heading>
             <Text as={`dd`}>{item.content}</Text>
             <Button>編集</Button>
-            <Button onClick={onClickDelete}>削除</Button>
-          </Box>
+            <Button onClick={onClickDelete} >削除</Button>
+          </VStack>
         ))}
-      </VStack>
     </Stack>
   );
 });
