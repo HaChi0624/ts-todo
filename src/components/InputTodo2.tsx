@@ -46,11 +46,11 @@ const InputTodo2: FC = memo(() => {
 
 
   return (
-    <Box p={6}>
-      <FormControl>
+    <Box px={{md:80}}>
+      <FormControl pb={{sm:3}}>
         <FormLabel>新規追加</FormLabel>
-        <Input placeholder="件名" value={title} onChange={inputTitle} />
-        <Input placeholder="内容" value={content} onChange={inputContent} />
+        <Input placeholder="件名: 歯を磨く" value={title} onChange={inputTitle} />
+        <Input placeholder="内容: 寝る前に必ず" value={content} onChange={inputContent} />
       </FormControl>
       <PrimaryButton onClick={onClickAdd}>追加</PrimaryButton>
     </Box>
