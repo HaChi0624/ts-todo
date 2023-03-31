@@ -5,9 +5,9 @@
 
 import { FC, useState, memo, useContext } from "react";
 import { Box, Input, FormControl, FormLabel } from "@chakra-ui/react";
-import { Todo } from "../Types";
-import { PrimaryButton } from "./atoms/PrimaryButton";
-import { ListContext } from "./ListProvider";
+import { Todo } from "../../Types";
+import { PrimaryButton } from "../atoms/PrimaryButton";
+import { ListContext } from "../../hooks/ListProvider";
 
 // type Props = {
 //   onChange:
@@ -43,14 +43,20 @@ const InputTodo2: FC = memo(() => {
     console.log(newTodo); //後で消す
   };
 
-
-
   return (
-    <Box px={{md:80}}>
-      <FormControl pb={{sm:3}}>
+    <Box px={{ md: 80 }}>
+      <FormControl pb={{ sm: 3 }}>
         <FormLabel>新規追加</FormLabel>
-        <Input placeholder="件名: 歯を磨く" value={title} onChange={inputTitle} />
-        <Input placeholder="内容: 寝る前に必ず" value={content} onChange={inputContent} />
+        <Input
+          placeholder="件名: 歯を磨く"
+          value={title}
+          onChange={inputTitle}
+        />
+        <Input
+          placeholder="内容: 寝る前に必ず"
+          value={content}
+          onChange={inputContent}
+        />
       </FormControl>
       <PrimaryButton onClick={onClickAdd}>追加</PrimaryButton>
     </Box>

@@ -1,5 +1,5 @@
 import { useCallback, useContext } from "react";
-import { ListContext } from "../components/ListProvider";
+import { ListContext } from "./ListProvider";
 
 export const useDelete = () => {
   const { todoList, setTodoList } = useContext(ListContext);
