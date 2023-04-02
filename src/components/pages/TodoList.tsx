@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 // import { PrimaryButton } from "./atoms/PrimaryButton";
 import { ListContext } from "../../hooks/ListProvider";
-import { useDelete } from "../../hooks/useDelete";
+import { useDelete } from "../../hooks/useTodos";
 import { EditTodoModal } from "../organism/EditTodoModal";
 
 const TodoList: FC = memo(() => {
