@@ -49,7 +49,7 @@ export const EditTodoModal: FC<Props> = memo((props) => {
             </Stack>
           </ModalBody>
           <ModalFooter>
-            <PrimaryButton onClick={onCkickUpdate}>保存</PrimaryButton>{" "}
+            <PrimaryButton onClick={onCkickUpdate}>保存</PrimaryButton>
             {/* stateの更新をしたい */}
           </ModalFooter>
         </ModalContent>

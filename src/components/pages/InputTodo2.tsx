@@ -32,7 +32,7 @@ const InputTodo2: FC = memo(() => {
       return alert("件名を入力してください");
     }
     const newTodo: Todo = {
-      id: Math.floor(Math.random() * 1e5),
+      id: todoList.length,
       title,
       content,
       status: false,
