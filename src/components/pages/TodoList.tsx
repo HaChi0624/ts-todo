@@ -1,4 +1,4 @@
-import { FC, memo, useContext } from "react";
+import { FC, memo } from "react";
 import {
   Button,
   Box,
@@ -6,37 +6,54 @@ import {
   Text,
   VStack,
   useDisclosure,
+  HStack,
 } from "@chakra-ui/react";
 // import { PrimaryButton } from "./atoms/PrimaryButton";
-import { ListContext } from "../../hooks/ListProvider";
-import { useDelete } from "../../hooks/useTodos";
+import { useToggleButton } from "../../hooks/useToggleButton"
 import { EditTodoModal } from "../organism/EditTodoModal";
+import { Todo } from "../../Types";
 
-const TodoList: FC = memo(() => {
+type Props = {
+  todoList: Todo[];
+  deleteTodo: (id: number) => void;
+}
+
+const TodoList: FC<Props> = memo((props) => {
   const { isOpen, onClose, onOpen } = useDisclosure();
-  const { todoList } = useContext(ListContext);
-  const { deleteTodo } = useDelete();
-
+  const { todoList, deleteTodo } = props;
+  const { toggleButton } = useToggleButton();
+  
   return (
     <VStack p={4}>
       <h2>Todo一覧</h2>
-      {todoList.map((item) => (
+      {todoList.map((todo) => (
         <Box
           as={`dl`}
-          key={item.id}
+          key={todo.id}
           shadow="md"
           backgroundColor="teal.100"
           borderRadius="md"
         >
           <Heading as={`dt`} mx={{ md: 60 }}>
-            {item.title}
+            {todo.title}
           </Heading>
-          <Text as={`dd`}>{item.content}</Text>
-          <Box>
-            <Button onClick={onOpen}>編集</Button>
-            <EditTodoModal isOpen={isOpen} onClose={onClose} />
-          </Box>
-          <Button onClick={() => deleteTodo(item.id)}>削除</Button>
+          <Text as={`dd`}>{todo.content}</Text>
+          <HStack >
+            <Button onClick={() => console.log(todo.status)
+}>{todo.status !== false ? "完了" : "未完了"}</Button>
+            <Box>
+              <Button onClick={onOpen}>編集</Button>
+              <EditTodoModal
+                isOpen={isOpen}
+                onClose={onClose}
+                id={todo.id}
+                content={todo.content}
+                title={todo.title}
+                status={todo.status}
+              />
+            </Box>
+            <Button onClick={() => deleteTodo(todo.id)}>削除</Button>
+          </HStack>
         </Box>
       ))}
     </VStack>

@@ -1,47 +1,17 @@
-//新規追加コンポーネント2
-//useContextでlist,setListを管理
-
-//InputTodo1は削除済み
-
-import { FC, useState, memo, useContext } from "react";
+import { FC, memo } from "react";
 import { Box, Input, FormControl, FormLabel } from "@chakra-ui/react";
-import { Todo } from "../../Types";
 import { PrimaryButton } from "../atoms/PrimaryButton";
-import { ListContext } from "../../hooks/ListProvider";
 
-// type Props = {
-//   onChange:
-// }
+type Props = {
+  title: string;
+  content: string;
+  inputTitle: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  inputContent: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  addTodo: () => void;
+};
 
-const InputTodo2: FC = memo(() => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const { todoList, setTodoList } = useContext(ListContext);
-
-  //inputのstatusを変化
-  const inputTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
-  };
-  const inputContent = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setContent(e.target.value);
-  };
-
-  //追加ボタンを押すと一覧に追加
-  const onClickAdd = () => {
-    if (title === "") {
-      return alert("件名を入力してください");
-    }
-    const newTodo: Todo = {
-      id: todoList.length,
-      title,
-      content,
-      status: false,
-    };
-    setTodoList([...todoList, newTodo]);
-    setTitle("");
-    setContent("");
-    console.log(newTodo); //後で消す
-  };
+const InputTodo2: FC<Props> = memo((props) => {
+  const { title, content, inputTitle, inputContent, addTodo } = props;
 
   return (
     <Box px={{ md: 80 }}>
@@ -58,7 +28,7 @@ const InputTodo2: FC = memo(() => {
           onChange={inputContent}
         />
       </FormControl>
-      <PrimaryButton onClick={onClickAdd}>追加</PrimaryButton>
+      <PrimaryButton onClick={addTodo}>追加</PrimaryButton>
     </Box>
   );
 });

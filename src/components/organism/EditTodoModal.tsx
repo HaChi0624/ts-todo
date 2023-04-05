@@ -1,4 +1,4 @@
-import React, { FC, memo, useContext } from "react";
+import React, { ChangeEvent, FC, memo, useContext } from "react";
 import {
   useDisclosure,
   Button,
@@ -14,19 +14,21 @@ import {
   ModalFooter,
   Box,
   Stack,
+  Select,
 } from "@chakra-ui/react";
-import { Todo } from "../../Types";
-import { ListContext } from "../../hooks/ListProvider";
 import { PrimaryButton } from "../atoms/PrimaryButton";
+import { Todo } from "../../Types";
 
-type Props = {
+type Props = Todo & {
   isOpen: boolean;
   onClose: () => void;
 };
 
 export const EditTodoModal: FC<Props> = memo((props) => {
-  const { isOpen, onClose } = props;
-  const { todoList } = useContext(ListContext);
+  const { isOpen, onClose, id , title, content, status } = props;
+  const editTitle = (e: ChangeEvent<HTMLInputElement>) => {
+    
+  }
 
   const onCkickUpdate = () => {};
 
@@ -38,13 +40,17 @@ export const EditTodoModal: FC<Props> = memo((props) => {
           <ModalCloseButton />
           <ModalBody>
             <Stack>
-              <FormControl>
+              <FormControl key={id}>
                 <FormLabel>件名</FormLabel>
-                <Input />
+                <Input value={title} onChange={editTitle}/>
               </FormControl>
               <FormControl>
                 <FormLabel>内容</FormLabel>
-                <Input />
+                <Input value={content} />
+              </FormControl>
+              <FormControl>
+                <FormLabel>ステータス</FormLabel>
+                <Button>{status !== false ? "完了" : "未完了"}</Button>
               </FormControl>
             </Stack>
           </ModalBody>
