@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Todo } from "../Types";
 
 export const useTodo = () => {
@@ -13,6 +13,7 @@ export const useTodo = () => {
     setContent(e.target.value);
   };
 
+  //追加
   const addTodo = () => {
     if (title === "") {
       return alert("件名を入力してください");
@@ -29,12 +30,32 @@ export const useTodo = () => {
     console.log(newTodo); //後で消す
   };
 
+  // 削除
   const deleteTodo = (id: number) => {
     const newTodoList = todoList.filter((todo) => {
       return todo.id !== id;
     });
     setTodoList(newTodoList);
   };
+
+  // 更新
+  // const [newTitle, setNewTitle] = useState('')
+
+  const updateTodo = (id:number) => {
+    const changeTodo: Todo = {
+      id,
+      title: newTitle,
+      content,
+      status: false || true,
+    }
+    setTodoList([...todoList, changeTodo])
+    setTitle(newTitle);
+  }
+
+  const editTitle = (e: ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+  };
+
   return {
     todoList,
     title,
@@ -43,6 +64,8 @@ export const useTodo = () => {
     inputContent,
     addTodo,
     deleteTodo,
+    updateTodo,
+    editTitle,
   };
 };
 

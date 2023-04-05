@@ -1,4 +1,4 @@
-import { FC, memo } from "react";
+import { ChangeEvent, FC, memo } from "react";
 import {
   Button,
   Box,
@@ -16,11 +16,12 @@ import { Todo } from "../../Types";
 type Props = {
   todoList: Todo[];
   deleteTodo: (id: number) => void;
+  editTitle: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const TodoList: FC<Props> = memo((props) => {
   const { isOpen, onClose, onOpen } = useDisclosure();
-  const { todoList, deleteTodo } = props;
+  const { todoList, deleteTodo, editTitle } = props;
   const { toggleButton } = useToggleButton();
   
   return (
@@ -48,9 +49,9 @@ const TodoList: FC<Props> = memo((props) => {
                 onClose={onClose}
                 id={todo.id}
                 content={todo.content}
-                title={todo.title}
+                newTitle={todo.title}
                 status={todo.status}
-              />
+                editTitle={editTitle}             />
             </Box>
             <Button onClick={() => deleteTodo(todo.id)}>削除</Button>
           </HStack>
