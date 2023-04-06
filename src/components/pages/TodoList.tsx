@@ -18,18 +18,12 @@ type Props = {
   updateTodo: (id: number) => void;
   editTitle: (e: ChangeEvent<HTMLInputElement>) => void;
   editContent: (e: ChangeEvent<HTMLInputElement>) => void;
+  toggleTodoDone: (id: number) => void;
 };
 
 const TodoList: FC<Props> = memo((props) => {
   const { isOpen, onClose, onOpen } = useDisclosure();
-  const { todoList, deleteTodo, updateTodo, editTitle, editContent } = props;
-
-  const toggleButton = (todo: Todo, id:number) => {
-    if (todo.id === id) {
-      todo.done = !todo.done;
-    }
-    
-  };
+  const { todoList, deleteTodo, updateTodo, editTitle, editContent,toggleTodoDone } = props;
 
   return (
     <VStack p={4}>
@@ -48,7 +42,7 @@ const TodoList: FC<Props> = memo((props) => {
           </Heading>
           <Text as={`dd`}>{todo.content}</Text>
           <HStack>
-            <Button onClick={() => toggleButton(todo,todo.id)}>
+            <Button onClick={() => toggleTodoDone(todo.id)}>
               {todo.done !== false ? "完了" : "未完了"}
             </Button>
             <Box>
@@ -63,6 +57,7 @@ const TodoList: FC<Props> = memo((props) => {
                 updateTodo={updateTodo}
                 editTitle={editTitle}
                 editContent={editContent}
+                toggleTodoDone={toggleTodoDone}
               />
             </Box>
             <Button onClick={() => deleteTodo(todo.id)}>削除</Button>

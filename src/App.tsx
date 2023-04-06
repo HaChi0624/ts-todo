@@ -17,6 +17,7 @@ const App = () => {
     updateTodo,
     editTitle,
     editContent,
+    toggleTodoDone,
   } = useTodo();
   return (
     <ChakraProvider>
@@ -34,6 +35,7 @@ const App = () => {
         updateTodo={updateTodo}
         editTitle={editTitle}
         editContent={editContent}
+        toggleTodoDone={toggleTodoDone}
       />
     </ChakraProvider>
   );

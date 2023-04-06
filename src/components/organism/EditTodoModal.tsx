@@ -25,6 +25,7 @@ type Props = {
   updateTodo: (id: number) => void;
   editTitle: (e: ChangeEvent<HTMLInputElement>) => void;
   editContent: (e: ChangeEvent<HTMLInputElement>) => void;
+  toggleTodoDone: (id: number) => void;
 };
 
 export const EditTodoModal: FC<Props> = memo((props) => {
@@ -38,6 +39,7 @@ export const EditTodoModal: FC<Props> = memo((props) => {
     editTitle,
     editContent,
     updateTodo,
+    toggleTodoDone,
   } = props;
 
   return (
@@ -59,7 +61,7 @@ export const EditTodoModal: FC<Props> = memo((props) => {
               </FormControl>
               <FormControl>
                 <FormLabel>ステータス</FormLabel>
-                <Button>{done !== false ? "完了" : "未完了"}</Button>
+                <Button onClick={() => toggleTodoDone(id)}>{done !== false ? "完了" : "未完了"}</Button>
               </FormControl>
             </Stack>
           </ModalBody>

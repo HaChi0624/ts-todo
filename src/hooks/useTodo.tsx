@@ -5,6 +5,7 @@ export const useTodo = () => {
   const [todoList, setTodoList] = useState<Array<Todo>>([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [done, setDone] = useState(false);
 
   const inputTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -58,14 +59,22 @@ export const useTodo = () => {
     console.log(todoList); //後で消す
   };
 
-  //done
-  const toggleTododone = (id: number, done: boolean) => {};
-
   const editTitle = (e: ChangeEvent<HTMLInputElement>) => {
     setNewTitle(e.target.value);
   };
   const editContent = (e: ChangeEvent<HTMLInputElement>) => {
     setNewContent(e.target.value);
+  };
+
+  //done
+  const toggleTodoDone = (id: number) => {
+    const newTodoList = todoList.map((todo) => {
+      if (todo.id === id) {
+        todo.done = !todo.done;
+      }
+      return todo
+    });
+    setTodoList(newTodoList)
   };
 
   return {
@@ -79,6 +88,7 @@ export const useTodo = () => {
     updateTodo,
     editTitle,
     editContent,
+    toggleTodoDone
   };
 };
 
