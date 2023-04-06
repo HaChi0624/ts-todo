@@ -22,12 +22,12 @@ export const useTodo = () => {
       id: todoList.length,
       title,
       content,
-      status: false,
+      done: false,
     };
     setTodoList([...todoList, newTodo]);
     setTitle("");
     setContent("");
-    console.log(newTodo); //後で消す
+    // console.log(newTodo); //後で消す
   };
 
   // 削除
@@ -39,21 +39,33 @@ export const useTodo = () => {
   };
 
   // 更新
-  // const [newTitle, setNewTitle] = useState('')
+  const [newTitle, setNewTitle] = useState("");
+  const [newContent, setNewContent] = useState("");
 
-  const updateTodo = (id:number) => {
+  const updateTodo = (id: number) => {
     const changeTodo: Todo = {
       id,
-      title: newTitle,
-      content,
-      status: false || true,
-    }
-    setTodoList([...todoList, changeTodo])
-    setTitle(newTitle);
-  }
+      title: newTitle || title,
+      content: newContent || content,
+      done: false,
+    };
+    const newTodoList = todoList.filter((todo) => {
+      return todo.id !== id;
+    }); //前のTodoを消すため
+    setTodoList([...newTodoList, changeTodo]);
+    setTitle("");
+    setContent("");
+    console.log(todoList); //後で消す
+  };
+
+  //done
+  const toggleTododone = (id: number, done: boolean) => {};
 
   const editTitle = (e: ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
+    setNewTitle(e.target.value);
+  };
+  const editContent = (e: ChangeEvent<HTMLInputElement>) => {
+    setNewContent(e.target.value);
   };
 
   return {
@@ -66,6 +78,7 @@ export const useTodo = () => {
     deleteTodo,
     updateTodo,
     editTitle,
+    editContent,
   };
 };
 

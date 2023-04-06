@@ -9,21 +9,28 @@ import {
   HStack,
 } from "@chakra-ui/react";
 // import { PrimaryButton } from "./atoms/PrimaryButton";
-import { useToggleButton } from "../../hooks/useToggleButton"
 import { EditTodoModal } from "../organism/EditTodoModal";
 import { Todo } from "../../Types";
 
 type Props = {
   todoList: Todo[];
   deleteTodo: (id: number) => void;
+  updateTodo: (id: number) => void;
   editTitle: (e: ChangeEvent<HTMLInputElement>) => void;
-}
+  editContent: (e: ChangeEvent<HTMLInputElement>) => void;
+};
 
 const TodoList: FC<Props> = memo((props) => {
   const { isOpen, onClose, onOpen } = useDisclosure();
-  const { todoList, deleteTodo, editTitle } = props;
-  const { toggleButton } = useToggleButton();
-  
+  const { todoList, deleteTodo, updateTodo, editTitle, editContent } = props;
+
+  const toggleButton = (todo: Todo, id:number) => {
+    if (todo.id === id) {
+      todo.done = !todo.done;
+    }
+    
+  };
+
   return (
     <VStack p={4}>
       <h2>Todo一覧</h2>
@@ -36,22 +43,27 @@ const TodoList: FC<Props> = memo((props) => {
           borderRadius="md"
         >
           <Heading as={`dt`} mx={{ md: 60 }}>
+            {todo.id}
             {todo.title}
           </Heading>
           <Text as={`dd`}>{todo.content}</Text>
-          <HStack >
-            <Button onClick={() => console.log(todo.status)
-}>{todo.status !== false ? "完了" : "未完了"}</Button>
+          <HStack>
+            <Button onClick={() => toggleButton(todo,todo.id)}>
+              {todo.done !== false ? "完了" : "未完了"}
+            </Button>
             <Box>
               <Button onClick={onOpen}>編集</Button>
               <EditTodoModal
                 isOpen={isOpen}
                 onClose={onClose}
                 id={todo.id}
-                content={todo.content}
+                newContent={todo.content}
                 newTitle={todo.title}
-                status={todo.status}
-                editTitle={editTitle}             />
+                done={todo.done}
+                updateTodo={updateTodo}
+                editTitle={editTitle}
+                editContent={editContent}
+              />
             </Box>
             <Button onClick={() => deleteTodo(todo.id)}>削除</Button>
           </HStack>

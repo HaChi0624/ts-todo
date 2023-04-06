@@ -14,7 +14,9 @@ const App = () => {
     inputTitle,
     inputContent,
     addTodo,
+    updateTodo,
     editTitle,
+    editContent,
   } = useTodo();
   return (
     <ChakraProvider>
@@ -26,7 +28,13 @@ const App = () => {
         inputContent={inputContent}
         addTodo={addTodo}
       />
-      <TodoList todoList={todoList} deleteTodo={deleteTodo} editTitle={editTitle} />
+      <TodoList
+        todoList={todoList}
+        deleteTodo={deleteTodo}
+        updateTodo={updateTodo}
+        editTitle={editTitle}
+        editContent={editContent}
+      />
     </ChakraProvider>
   );
 };
