@@ -1,6 +1,6 @@
 import { FC, memo } from "react";
 import { Box, Input, FormControl, FormLabel } from "@chakra-ui/react";
-import { PrimaryButton } from "../atoms/PrimaryButton";
+import { PrimaryButton } from "../components/atoms/PrimaryButton";
 
 type Props = {
   title: string;

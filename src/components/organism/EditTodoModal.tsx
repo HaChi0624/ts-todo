@@ -16,7 +16,7 @@ import {
 import { PrimaryButton } from "../atoms/PrimaryButton";
 
 type Props = {
-  id: number;
+  todoId: number;
   newTitle: string;
   newContent: string;
   done: boolean;
@@ -30,7 +30,7 @@ type Props = {
 
 export const EditTodoModal: FC<Props> = memo((props) => {
   const {
-    id,
+    todoId,
     newTitle,
     newContent,
     done,
@@ -51,7 +51,7 @@ export const EditTodoModal: FC<Props> = memo((props) => {
           <ModalCloseButton />
           <ModalBody>
             <Stack>
-              <FormControl key={id}>
+              <FormControl key={todoId}>
                 <FormLabel>件名</FormLabel>
                 <Input placeholder={newTitle} onChange={editTitle} />
               </FormControl>
@@ -61,14 +61,14 @@ export const EditTodoModal: FC<Props> = memo((props) => {
               </FormControl>
               <FormControl>
                 <FormLabel>ステータス</FormLabel>
-                <Button onClick={() => toggleTodoDone(id)}>{done !== false ? "完了" : "未完了"}</Button>
+                <Button onClick={() => toggleTodoDone(todoId)}>{done !== false ? "完了" : "未完了"}</Button>
               </FormControl>
             </Stack>
           </ModalBody>
           <ModalFooter>
             <PrimaryButton
               onClick={() => {
-                updateTodo(id);
+                updateTodo(todoId);
               }}
             >
               保存

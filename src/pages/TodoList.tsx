@@ -9,8 +9,8 @@ import {
   HStack,
 } from "@chakra-ui/react";
 // import { PrimaryButton } from "./atoms/PrimaryButton";
-import { EditTodoModal } from "../organism/EditTodoModal";
-import { Todo } from "../../Types";
+import { EditTodoModal } from "../components/organism/EditTodoModal";
+import { Todo } from "../Types";
 
 type Props = {
   todoList: Todo[];
@@ -23,7 +23,14 @@ type Props = {
 
 const TodoList: FC<Props> = memo((props) => {
   const { isOpen, onClose, onOpen } = useDisclosure();
-  const { todoList, deleteTodo, updateTodo, editTitle, editContent,toggleTodoDone } = props;
+  const {
+    todoList,
+    deleteTodo,
+    updateTodo,
+    editTitle,
+    editContent,
+    toggleTodoDone,
+  } = props;
 
   return (
     <VStack p={4}>
@@ -50,7 +57,7 @@ const TodoList: FC<Props> = memo((props) => {
               <EditTodoModal
                 isOpen={isOpen}
                 onClose={onClose}
-                id={todo.id}
+                todoId={todo.id}
                 newContent={todo.content}
                 newTitle={todo.title}
                 done={todo.done}
